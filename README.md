@@ -21,7 +21,7 @@ Lancez le terminal et exécutez les commandes suivantes :
 sudo ufw allow 8096/tcp
 
 # Bloque le trafic sortant vers notre réseau local pour empêcher les mouvements latéraux (Remplacez par votre sous-réseau)
-sudo ufw deny out to 192.168.18.0/24https://github.com/fd-istech/Guide-Jellyfin-Server/blob/main/README.md
+sudo ufw deny out to 192.168.18.0/24
 
 # Activer le pare-feu
 sudo ufw enable
