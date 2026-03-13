@@ -30,7 +30,7 @@ sudo ufw enable
 sudo ufw status
 
 ```
-[Insérer l'image du terminal UFW ici]
+![dashboard](dashboard.jpg)
 
 3. Dossiers médias et permissions
 Nous allons créer les dossiers pour nos médias et les sécuriser en dehors du répertoire utilisateur principal.
@@ -56,11 +56,10 @@ curl [https://repo.jellyfin.org/install.sh](https://repo.jellyfin.org/install.sh
 
 # Confirmer que le service est en cours d'exécution (Appuyez sur 'q' pour quitter)
 sudo systemctl status jellyfin
-À partir de votre navigateur, visitez http://localhost:8096 pour créer un compte admin et pointer vos bibliothèques vers les dossiers que nous avons créés (/srv/media/movies et /srv/media/series).
-
-[Insérer l'image de l'interface locale Jellyfin ici]
 
 ```
+À partir de votre navigateur, visitez http://localhost:8096 pour créer un compte admin et pointer vos bibliothèques vers les dossiers que nous avons créés (/srv/media/movies et /srv/media/series).
+![jellyfinlocal](jellyfinlocal.png)
 
 5. Accès à distance Zero-Trust (Tailscale)
 Pour pouvoir accéder à notre serveur en dehors de notre réseau local, nous utiliserons Tailscale. Cela crée un tunnel sécurisé (WireGuard) qui contourne le CGNAT de votre fournisseur d'accès et vous évite d'ouvrir des ports sur votre routeur (Port Forwarding).
