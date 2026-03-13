@@ -21,7 +21,7 @@ Lancez le terminal et exécutez les commandes suivantes :
 sudo ufw allow 8096/tcp
 
 # Bloque le trafic sortant vers notre réseau local pour empêcher les mouvements latéraux (Remplacez par votre sous-réseau)
-sudo ufw deny out to 192.168.18.0/24
+sudo ufw deny out to 192.168.18.0/24https://github.com/fd-istech/Guide-Jellyfin-Server/blob/main/README.md
 
 # Activer le pare-feu
 sudo ufw enable
@@ -32,7 +32,7 @@ sudo ufw status
 ```
 ![dashboard](dashboard.jpg)
 
-3. Dossiers médias et permissions
+## 3. Dossiers médias et permissions
 Nous allons créer les dossiers pour nos médias et les sécuriser en dehors du répertoire utilisateur principal.
 
 ```bash
@@ -47,7 +47,7 @@ sudo chown -R $USER:jellyfin /srv/media
 sudo chmod -R 750 /srv/media
 ```
 
-4. Installation de Jellyfin
+## 4. Installation de Jellyfin
 Exécutez les commandes suivantes dans le terminal pour installer le service :
 
 ```bash
@@ -58,34 +58,33 @@ curl [https://repo.jellyfin.org/install.sh](https://repo.jellyfin.org/install.sh
 sudo systemctl status jellyfin
 
 ```
-À partir de votre navigateur, visitez http://localhost:8096 pour créer un compte admin et pointer vos bibliothèques vers les dossiers que nous avons créés (/srv/media/movies et /srv/media/series).
-![jellyfinlocal](jellyfinlocal.png)
 
-5. Accès à distance Zero-Trust (Tailscale)
+À partir de votre navigateur, visitez http://localhost:8096 pour créer un compte admin et pointer vos bibliothèques vers les dossiers que nous avons créés (/srv/media/movies et /srv/media/series).
+
+![jellyfinlocal](myjellyserver.png)
+
+## 5. Accès à distance Zero-Trust (Tailscale)
 Pour pouvoir accéder à notre serveur en dehors de notre réseau local, nous utiliserons Tailscale. Cela crée un tunnel sécurisé (WireGuard) qui contourne le CGNAT de votre fournisseur d'accès et vous évite d'ouvrir des ports sur votre routeur (Port Forwarding).
 
-Installation
 ```bash
+# Installation
 curl -fsSL [https://tailscale.com/install.sh](https://tailscale.com/install.sh) | sh
-Authentifier la machine
 
+# Authentifier la machine
 sudo tailscale up
 (Cliquez sur le lien généré dans le terminal pour approuver la machine dans votre compte Tailscale).
 
-Vous pourrez désormais accéder à votre serveur Jellyfin de n'importe où avec l’adresse IP Tailscale de la machine virtuelle.
-
-[Insérer l'image du dashboard Tailscale ici]
 ```
+Vous pourrez désormais accéder à votre serveur Jellyfin de n'importe où avec l’adresse IP Tailscale de la machine virtuelle.
+![tailscale](tailscaleip.png)
 
 Pour tester : Installez Tailscale et l’application Jellyfin sur votre cellulaire, désactivez le Wi-Fi, puis testez Jellyfin en vous connectant sur l’adresse IP Tailscale : http://100.x.x.x:8096.
 
-[Insérer les images de l'application mobile ici]
-
 Partage externe (Node Sharing) : Pour donner accès à d’autres utilisateurs (comme de la famille ou des amis), vous pouvez partager uniquement la machine virtuelle Ubuntu à partir de la console Tailscale en cliquant sur les trois points ("Share"), sans leur donner accès au reste de votre réseau.
 
-[Insérer l'image du bouton Share Tailscale ici]
-
-6. Accès local (Smart TV)
+## 6. Accès local (Smart TV - Laptop)
 Les appareils sur le même réseau (ex: Smart TV dans le salon) n'ont pas besoin de Tailscale. Ils peuvent se connecter directement avec l'adresse IP locale assignée par le routeur à la VM en mode Bridge.
 
 Adresse de connexion : http://192.168.18.X:8096 (utilisez la commande ip a dans le terminal pour vérifier votre IP locale).
+
+![locale](jellyfinlocal.png)
