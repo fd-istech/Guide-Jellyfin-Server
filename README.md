@@ -50,7 +50,7 @@ sudo chmod -R 750 /srv/media
 4. Installation de Jellyfin
 Exécutez les commandes suivantes dans le terminal pour installer le service :
 
-```
+```bash
 # Télécharge et installe le serveur média depuis le dépôt officiel
 curl [https://repo.jellyfin.org/install.sh](https://repo.jellyfin.org/install.sh) | sudo bash
 
@@ -66,7 +66,7 @@ sudo systemctl status jellyfin
 Pour pouvoir accéder à notre serveur en dehors de notre réseau local, nous utiliserons Tailscale. Cela crée un tunnel sécurisé (WireGuard) qui contourne le CGNAT de votre fournisseur d'accès et vous évite d'ouvrir des ports sur votre routeur (Port Forwarding).
 
 Installation
-```
+```bash
 curl -fsSL [https://tailscale.com/install.sh](https://tailscale.com/install.sh) | sh
 Authentifier la machine
 
