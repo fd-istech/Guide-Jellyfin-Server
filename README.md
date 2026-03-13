@@ -35,7 +35,7 @@ sudo ufw status
 3. Dossiers médias et permissions
 Nous allons créer les dossiers pour nos médias et les sécuriser en dehors du répertoire utilisateur principal.
 
-```
+```bash
 # Création des répertoires
 sudo mkdir -p /srv/media/movies
 sudo mkdir -p /srv/media/series
